@@ -1,0 +1,9 @@
+s_GlobalValueID,f_Value
+전역변수로 사용할 대상,고정 상수 값
+f_RefillMoneyInterval,1
+f_RefillMoneyCount,0.75
+f_DefaultMoneyCount,500
+f_RequireGachaPrice,100
+f_MaxMoneyLimit,100000
+f_CanGetRefillMoneyCount,100
+f_RefillMoneyOneTime,5
