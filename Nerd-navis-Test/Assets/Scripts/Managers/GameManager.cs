@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
         Initialize();
         InterfaceManager.Instance.Initialize();
         ItemManager.Instance.Initialize();
+        RandomBagTableManager.Instance.Initialize();
+        GachaManager.Instance.Initialize();
     }
 
     void Initialize()

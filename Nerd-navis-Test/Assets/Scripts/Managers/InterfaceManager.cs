@@ -20,12 +20,6 @@ public class InterfaceManager : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        if (this != Instance)
-            Destroy(gameObject);
-    }
-
     [Header("Text")]
     [SerializeField] TextMeshProUGUI DamageText;
     [SerializeField] TextMeshProUGUI DefenceText;
@@ -48,6 +42,11 @@ public class InterfaceManager : MonoBehaviour
     public float MakedMoney { get { return f_MakedMoney; } set { f_MakedMoney = value; } }
     public float RefillMoneyOneTime => f_RefillMoneyOneTime;
 
+    private void Awake()
+    {
+        if (this != Instance)
+            Destroy(gameObject);
+    }
     private void Update()
     {
         f_MakeMoneyTimer += Time.deltaTime;
