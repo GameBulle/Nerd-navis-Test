@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
 
         Initialize();
         InterfaceManager.Instance.Initialize();
+        ItemManager.Instance.Initialize();
     }
 
     void Initialize()
