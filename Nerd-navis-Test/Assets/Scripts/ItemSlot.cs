@@ -45,7 +45,15 @@ public class ItemSlot : MonoBehaviour
         UpgradeSlider.maxValue = item.UpgradeRequire;
         UpgradeSlider.value = item.Count;
         ItemCountText.text = MakeItemCountStr(item.Count,item.UpgradeRequire);
-        ItemLevelText.text = item.Level.ToString();
+        ItemLevelText.text = MakeItemLevelStr(item.Level);
+    }
+
+    string MakeItemLevelStr(int ItemLevel)
+    {
+        StringBuilder Sb = new();
+        Sb.Append("Lv.");
+        Sb.Append(ItemLevel);
+        return Sb.ToString();
     }
 
     string MakeItemCountStr(int Count, int Require)

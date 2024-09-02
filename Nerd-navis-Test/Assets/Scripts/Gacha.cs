@@ -35,7 +35,7 @@ public class Gacha : MonoBehaviour
         }
     }
 
-    Dictionary<int, int> PickRandomItem(int Time)
+    public Dictionary<int, int> PickRandomItem(int Time)
     {
         Dictionary<int, int> d_PickedItemDic = new();   // key : ItemID, Value : Count
         float weight = 0f;
@@ -58,6 +58,10 @@ public class Gacha : MonoBehaviour
                 }
             }
         }
+
+        //foreach (KeyValuePair<int, int> d in d_PickedItemDic)
+        //    ItemManager.Instance.CheckIncreaseItem(d.Key, d.Value);
+
         return d_PickedItemDic;
     }
 }

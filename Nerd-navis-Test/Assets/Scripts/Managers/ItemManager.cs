@@ -71,6 +71,9 @@ public class ItemManager : MonoBehaviour
             l_UpgradeValueList[(int)ItemManager.ItemGrade.Rare].Add(int.Parse(l_Data2[i]["n_RareUpgradeValue"]));
             l_UpgradeValueList[(int)ItemManager.ItemGrade.Epic].Add(int.Parse(l_Data2[i]["n_EpicUpgradeValue"]));
         }
+
+        //for (int i = 0; i < l_LimitAndCostList.Count; i++)
+        //    Debug.Log(l_LimitAndCostList[i]);
     }
 
     public Item GetItem(int ItemID)
@@ -97,7 +100,7 @@ public class ItemManager : MonoBehaviour
     void IncreaseItem(Item item)
     {
         int n_Step = 0;
-        while (l_LimitAndCostList[n_Step].x > item.Level) { n_Step++; }
+        while (l_LimitAndCostList[n_Step].x < item.Level) { n_Step++;}
 
         if (item.Count >= l_LimitAndCostList[n_Step].y)
         {
