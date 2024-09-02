@@ -889,9 +889,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 3
   m_WholeNumbers: 0
-  m_Value: 0.655
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -983,3 +983,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9815720e811942d4aac2d9b2effdab0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OutLine: {fileID: 9012849651941929330}
+  ItemLevelImage: {fileID: 9012849651466266907}
+  ItemIcon: {fileID: 9012849651686633284}
+  UpgradeSlider: {fileID: 9012849652675852733}
+  ItemCountText: {fileID: 9012849652153189028}
+  ItemLevelText: {fileID: 9012849651560410526}

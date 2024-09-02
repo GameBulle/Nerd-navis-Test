@@ -57,7 +57,6 @@ public class ItemManager : MonoBehaviour
                 (ItemOptionType)Enum.Parse(typeof(ItemOptionType), l_Data[i]["e_ItemOptionType"]),
                 int.Parse(l_Data[i]["n_DefaultValue"]),
                 l_Data[i]["s_IconPath"]);
-            Debug.Log(i);
             l_ItemList.Add(i_Item);
         }
 
@@ -80,7 +79,7 @@ public class ItemManager : MonoBehaviour
         return (n_Index != -1 ? l_ItemList[n_Index] : null);
     }
 
-    public void CheckIncreaseItem(int ItemID)
+    public void CheckIncreaseItem(int ItemID, int Count)
     {
         int n_Index = l_ItemList.FindIndex(x => x.ItemID == ItemID);
         if(n_Index == -1)
@@ -90,12 +89,10 @@ public class ItemManager : MonoBehaviour
         }
 
         if (l_ItemList[n_Index].Level == 0)
-            FirstGetItem(l_ItemList[ItemID]);
-        else
-            IncreaseItem(l_ItemList[n_Index]);
+            l_ItemList[n_Index].Level++;
+        l_ItemList[n_Index].Count += Count;
+        IncreaseItem(l_ItemList[n_Index]);
     }
-
-    void FirstGetItem(Item item) { item.Level++; }
 
     void IncreaseItem(Item item)
     {
@@ -110,6 +107,6 @@ public class ItemManager : MonoBehaviour
             IncreaseItem(item);
         }
         else
-            return;
+            item.UpgradeRequire = (int)l_LimitAndCostList[n_Step].y;
     }
 }
