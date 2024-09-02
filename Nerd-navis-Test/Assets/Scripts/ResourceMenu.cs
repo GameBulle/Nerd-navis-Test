@@ -17,7 +17,7 @@ public class ResourceMenu : MonoBehaviour
     private void FixedUpdate()
     {
         MoneyMakeSlider.value = InterfaceManager.Instance.MakeMoneyTimer;
-        LeftMakeTimeText.text = string.Format("{0:F2}", (InterfaceManager.Instance.RefillMoneyOneTime - MoneyMakeSlider.value));
+        LeftMakeTimeText.text = string.Format("{0:F2}", (InterfaceManager.Instance.RefillMoneyInterval - MoneyMakeSlider.value));
 
         if (MoneyMakeSlider.value == MoneyMakeSlider.maxValue)
         {
@@ -38,8 +38,8 @@ public class ResourceMenu : MonoBehaviour
         f_CanGetRefillMoneyCount = getCount;
 
         MoneyMakeSlider.value = 0f;
-        MoneyMakeSlider.maxValue = InterfaceManager.Instance.RefillMoneyOneTime;
-        LeftMakeTimeText.text = InterfaceManager.Instance.RefillMoneyOneTime.ToString();
+        MoneyMakeSlider.maxValue = InterfaceManager.Instance.RefillMoneyInterval;
+        LeftMakeTimeText.text = InterfaceManager.Instance.RefillMoneyInterval.ToString();
         UpdateMakedMoney();
         MakedMoneyText.color = Color.red;
         CanGetNoticeBoard.SetActive(false);

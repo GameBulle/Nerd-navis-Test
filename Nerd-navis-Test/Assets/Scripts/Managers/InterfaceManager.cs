@@ -36,16 +36,16 @@ public class InterfaceManager : MonoBehaviour
 
     float f_RefillMoneyInterval = 0f;
     float f_RefillMoneyCount = 0f;
-    float f_RefillMoneyOneTime = 0f;
 
+    public float RefillMoneyInterval => f_RefillMoneyInterval;
     public float MakeMoneyTimer => f_MakeMoneyTimer;
     public float MakedMoney { get { return f_MakedMoney; } set { f_MakedMoney = value; } }
-    public float RefillMoneyOneTime => f_RefillMoneyOneTime;
 
     private void Awake()
     {
         if (this != Instance)
             Destroy(gameObject);
+        Initialize();
     }
     private void Update()
     {
@@ -54,10 +54,10 @@ public class InterfaceManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(f_MakeMoneyTimer >= f_RefillMoneyOneTime)
+        if(f_MakeMoneyTimer >= f_RefillMoneyInterval)
         {
             f_MakeMoneyTimer = 0f;
-            f_MakedMoney += (f_RefillMoneyOneTime / f_RefillMoneyInterval) * f_RefillMoneyCount;
+            f_MakedMoney += f_RefillMoneyCount;
             resourceMenu.UpdateMakedMoney();
         }
     }
@@ -99,9 +99,6 @@ public class InterfaceManager : MonoBehaviour
                         break;
                     case "f_CanGetRefillMoneyCount":
                         f_CanGetRefillMoneyCount = float.Parse(d.Value);
-                        break;
-                    case "f_RefillMoneyOneTime":
-                        f_RefillMoneyOneTime = float.Parse(d.Value);
                         break;
                 }
             }

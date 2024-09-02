@@ -27,6 +27,7 @@ public class GachaManager : MonoBehaviour
             Destroy(gameObject);
 
         l_GachaList = new();
+        Initialize();
     }
 
     public void Initialize()

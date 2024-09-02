@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Runtime.InteropServices;
+using System.Drawing;
 
 public class ItemManager : MonoBehaviour
 {
@@ -35,6 +36,13 @@ public class ItemManager : MonoBehaviour
 
         l_ItemList = new();
         l_LimitAndCostList = new();
+
+        int n_Size = System.Enum.GetValues(typeof(ItemManager.ItemGrade)).Length;
+        l_UpgradeValueList = new List<int>[n_Size];
+        for (int i = 0; i < n_Size; i++)
+            l_UpgradeValueList[i] = new();
+
+        Initialize();
     }
 
     public void Initialize()
@@ -49,14 +57,11 @@ public class ItemManager : MonoBehaviour
                 (ItemOptionType)Enum.Parse(typeof(ItemOptionType), l_Data[i]["e_ItemOptionType"]),
                 int.Parse(l_Data[i]["n_DefaultValue"]),
                 l_Data[i]["s_IconPath"]);
+            Debug.Log(i);
             l_ItemList.Add(i_Item);
         }
 
         List<Dictionary<string, string>> l_Data2 = CSV.Read("ItemOptionUpgrade");
-        l_UpgradeValueList = new List<int>[l_Data2.Count - 1];
-        for (int i = 0; i < l_Data2.Count - 1; i++)
-            l_UpgradeValueList[i] = new();
-
         for (int i = 1; i < l_Data2.Count; i++)
         {
             Vector2 v;
@@ -67,5 +72,44 @@ public class ItemManager : MonoBehaviour
             l_UpgradeValueList[(int)ItemManager.ItemGrade.Rare].Add(int.Parse(l_Data2[i]["n_RareUpgradeValue"]));
             l_UpgradeValueList[(int)ItemManager.ItemGrade.Epic].Add(int.Parse(l_Data2[i]["n_EpicUpgradeValue"]));
         }
+    }
+
+    public Item GetItem(int ItemID)
+    {
+        int n_Index = l_ItemList.FindIndex(x => x.ItemID == ItemID);
+        return (n_Index != -1 ? l_ItemList[n_Index] : null);
+    }
+
+    public void CheckIncreaseItem(int ItemID)
+    {
+        int n_Index = l_ItemList.FindIndex(x => x.ItemID == ItemID);
+        if(n_Index == -1)
+        {
+            Debug.LogError("Item Null");
+            return;
+        }
+
+        if (l_ItemList[n_Index].Level == 0)
+            FirstGetItem(l_ItemList[ItemID]);
+        else
+            IncreaseItem(l_ItemList[n_Index]);
+    }
+
+    void FirstGetItem(Item item) { item.Level++; }
+
+    void IncreaseItem(Item item)
+    {
+        int n_Step = 0;
+        while (l_LimitAndCostList[n_Step].x > item.Level) { n_Step++; }
+
+        if (item.Count >= l_LimitAndCostList[n_Step].y)
+        {
+            item.Count -= (int)l_LimitAndCostList[n_Step].y;
+            item.Level++;
+            item.Value += l_UpgradeValueList[(int)item.Grade][n_Step];
+            IncreaseItem(item);
+        }
+        else
+            return;
     }
 }

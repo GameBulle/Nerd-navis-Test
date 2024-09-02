@@ -27,6 +27,7 @@ public class RandomBagTableManager : MonoBehaviour
             Destroy(gameObject);
 
         d_RandomBagDictionary = new();
+        Initialize();
     }
 
     public void Initialize()
