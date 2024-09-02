@@ -27,7 +27,7 @@ public class RandomBagTableManager : MonoBehaviour
             Destroy(gameObject);
 
         d_RandomBagDictionary = new();
-        Initialize();
+        //Initialize();
     }
 
     public void Initialize()
@@ -45,4 +45,6 @@ public class RandomBagTableManager : MonoBehaviour
             d_RandomBagDictionary[n_Key].Add(int.Parse(l_Data[i]["n_GachaRewardID"]));
         }
     }
+
+    public List<int> GetTableItemList(int RandomBagID) { return d_RandomBagDictionary[RandomBagID]; }
 }

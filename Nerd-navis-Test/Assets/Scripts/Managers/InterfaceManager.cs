@@ -45,7 +45,7 @@ public class InterfaceManager : MonoBehaviour
     {
         if (this != Instance)
             Destroy(gameObject);
-        Initialize();
+        //Initialize();
     }
     private void Update()
     {

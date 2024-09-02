@@ -42,7 +42,7 @@ public class ItemManager : MonoBehaviour
         for (int i = 0; i < n_Size; i++)
             l_UpgradeValueList[i] = new();
 
-        Initialize();
+        //Initialize();
     }
 
     public void Initialize()

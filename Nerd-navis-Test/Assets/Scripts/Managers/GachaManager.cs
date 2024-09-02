@@ -27,7 +27,7 @@ public class GachaManager : MonoBehaviour
             Destroy(gameObject);
 
         l_GachaList = new();
-        Initialize();
+        //Initialize();
     }
 
     public void Initialize()
@@ -43,5 +43,11 @@ public class GachaManager : MonoBehaviour
                 int.Parse(l_Data[i]["n_GachaRandombagID"]));
             l_GachaList.Add(g_Gacha);
         }
+    }
+
+    public Gacha GetGacha(int GachaID)
+    {
+        int n_Index = l_GachaList.FindIndex(x => x.GachaID == GachaID);
+        return (n_Index != -1 ? l_GachaList[n_Index] : null);
     }
 }

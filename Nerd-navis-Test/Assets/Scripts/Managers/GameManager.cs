@@ -67,12 +67,15 @@ public class GameManager : MonoBehaviour
     {
         if (this != Instance)
             Destroy(gameObject);
+    }
 
+    private void Start()
+    {
         Initialize();
-        //InterfaceManager.Instance.Initialize();
-        //ItemManager.Instance.Initialize();
-        //RandomBagTableManager.Instance.Initialize();
-        //GachaManager.Instance.Initialize();
+        InterfaceManager.Instance.Initialize();
+        ItemManager.Instance.Initialize();
+        RandomBagTableManager.Instance.Initialize();
+        GachaManager.Instance.Initialize();
     }
 
     void Initialize()
