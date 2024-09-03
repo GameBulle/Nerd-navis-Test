@@ -19,7 +19,7 @@ public class GachaManager : MonoBehaviour
         }
     }
 
-    List<Gacha> l_GachaList;
+    List<Gacha> l_GachaList;    // 모든 Gacha(뽑기)를 관리하는 List
 
     private void Awake()
     {
@@ -27,7 +27,6 @@ public class GachaManager : MonoBehaviour
             Destroy(gameObject);
 
         l_GachaList = new();
-        //Initialize();
     }
 
     public void Initialize()

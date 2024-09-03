@@ -19,7 +19,7 @@ public class RandomBagTableManager : MonoBehaviour
         }
     }
 
-    Dictionary<int, List<int>> d_RandomBagDictionary;
+    Dictionary<int, List<int>> d_RandomBagDictionary;   // key : RandomBagTable의 ID, Value : 해당 RandomBagTable ID로 얻을 수있는 장비 List
 
     private void Awake()
     {
@@ -27,7 +27,6 @@ public class RandomBagTableManager : MonoBehaviour
             Destroy(gameObject);
 
         d_RandomBagDictionary = new();
-        //Initialize();
     }
 
     public void Initialize()
