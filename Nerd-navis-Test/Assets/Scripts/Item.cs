@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    int n_ItemID;
-    ItemManager.ItemGrade e_ItemGrade;
-    ItemManager.ItemOptionType e_ItemOptionType;
-    int n_Value;
-    int n_Count;
-    int n_Level;
-    int n_UpgradeRequire;
+    int n_ItemID;   // 아이템의 ID
+    ItemManager.ItemGrade e_ItemGrade;  // 아이템의 등급
+    ItemManager.ItemOptionType e_ItemOptionType;    // 아이템의 능력치 타입
+    int n_Value;    // 아이템의 현재 능력치
+    int n_Count;    // 아이템의 현재 수량
+    int n_Level;    // 아이템의 현재 레벨
+    int n_UpgradeRequire;   // 다음 업그레이드에 필요한 수량
     Sprite ItemIcon;
 
     public int ItemID => n_ItemID;
