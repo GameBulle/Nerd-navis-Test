@@ -25,9 +25,9 @@ public class ItemManager : MonoBehaviour
     public enum ItemGrade { Normal, Rare, Epic }
     public enum ItemOptionType { AttackIncrease, DefenseIncrease, HpIncrease }
 
-    List<Item> l_ItemList;
+    List<Item> l_ItemList;              // 모든 Item을 관리하는 List
     List<Vector2> l_LimitAndCostList;   // x : 강화 단계 이하 조건, y : 단계 별 요구 비용
-    List<int>[] l_UpgradeValueList;
+    List<int>[] l_UpgradeValueList;     // l_UpgradeValueList[i][j] => i : 아이템의 등급, j : 현재 강화 단계
 
     private void Awake()
     {
@@ -37,12 +37,10 @@ public class ItemManager : MonoBehaviour
         l_ItemList = new();
         l_LimitAndCostList = new();
 
-        int n_Size = System.Enum.GetValues(typeof(ItemManager.ItemGrade)).Length;
+        int n_Size = System.Enum.GetValues(typeof(ItemManager.ItemGrade)).Length;   // 아이템의 등급 종류
         l_UpgradeValueList = new List<int>[n_Size];
         for (int i = 0; i < n_Size; i++)
             l_UpgradeValueList[i] = new();
-
-        //Initialize();
     }
 
     public void Initialize()
@@ -71,9 +69,6 @@ public class ItemManager : MonoBehaviour
             l_UpgradeValueList[(int)ItemManager.ItemGrade.Rare].Add(int.Parse(l_Data2[i]["n_RareUpgradeValue"]));
             l_UpgradeValueList[(int)ItemManager.ItemGrade.Epic].Add(int.Parse(l_Data2[i]["n_EpicUpgradeValue"]));
         }
-
-        //for (int i = 0; i < l_LimitAndCostList.Count; i++)
-        //    Debug.Log(l_LimitAndCostList[i]);
     }
 
     public Item GetItem(int ItemID)
@@ -86,12 +81,9 @@ public class ItemManager : MonoBehaviour
     {
         int n_Index = l_ItemList.FindIndex(x => x.ItemID == ItemID);
         if(n_Index == -1)
-        {
-            Debug.LogError("Item Null");
-            return;
-        }
+            throw new Exception("Item is Null");
 
-        if (l_ItemList[n_Index].Level == 0)
+        if (l_ItemList[n_Index].Level == 0) // 처음 장비를 얻었을 때
             l_ItemList[n_Index].Level++;
         l_ItemList[n_Index].Count += Count;
         IncreaseItem(l_ItemList[n_Index]);
@@ -99,15 +91,16 @@ public class ItemManager : MonoBehaviour
 
     void IncreaseItem(Item item)
     {
-        int n_Step = 0;
-        while (l_LimitAndCostList[n_Step].x < item.Level) { n_Step++;}
+        int n_Step = 0;     // 강화 단계
+        while (l_LimitAndCostList[n_Step].x < item.Level            // 현재 아이템의 Level에 맞는 강화 단계를 확인
+            && n_Step < l_LimitAndCostList.Count - 1) { n_Step++;}  // 아이템의 Level이 마지막 강화 단계에 속하는지 확인
 
-        if (item.Count >= l_LimitAndCostList[n_Step].y)
+        if (item.Count >= l_LimitAndCostList[n_Step].y)     // 아이템의 현재 수량이 강화 비용보다 많은지 확인
         {
             item.Count -= (int)l_LimitAndCostList[n_Step].y;
             item.Level++;
             item.Value += l_UpgradeValueList[(int)item.Grade][n_Step];
-            IncreaseItem(item);
+            IncreaseItem(item);     // 아이템의 현재 수량이 강화 비용보다 적을때 까지 재귀함수로 반복
         }
         else
             item.UpgradeRequire = (int)l_LimitAndCostList[n_Step].y;
