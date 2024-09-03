@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    float f_Damage, f_Defence, f_Hp;
-    int n_Money;
+    float f_Damage, f_Defence, f_Hp;    // 공격력, 방어력, 체력
+    int n_Money;    // 돈(자원)
 
     public float Damage 
     { 
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         set 
         { 
             f_Damage = value;
-            InterfaceManager.Instance.UpdateStatus();
+            InterfaceManager.Instance.UpdateStatus();   // 돈(자원) 및 능력치(공격력, 방어력, 체력)이 변경될 때마다 바로 Update 
         } 
     }
     public float Defence 
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         f_Hp = 0f;
     }
 
-    public string MakeValueUnit(float value)
+    public string MakeValueUnit(float value)    // 1000 단위로 숫자를 표현하는 함수
     {
         StringBuilder Sb = new();
         int n_Share = 0;
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             n_Share++;
         }
 
-        value = Mathf.Floor(value * 100f) / 100f;
+        value = Mathf.Floor(value * 100f) / 100f;   // 소수점 2자리 까지만 표시
         Sb.Append(value);
 
         switch(n_Share)
