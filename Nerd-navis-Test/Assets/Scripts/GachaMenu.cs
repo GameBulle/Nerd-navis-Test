@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GachMenu : MonoBehaviour
+public class GachaMenu : MonoBehaviour
 {
     [SerializeField] GachaResult GachaResult;
     [SerializeField] Inventory[] inventories;   // Weapon, Defence, Shield

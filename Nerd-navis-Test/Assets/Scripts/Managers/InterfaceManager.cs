@@ -29,7 +29,7 @@ public class InterfaceManager : MonoBehaviour
 
     [Header("Variable")]
     [SerializeField] ResourceMenu resourceMenu;
-    [SerializeField] GachMenu gachaMenu;
+    [SerializeField] GachaMenu gachaMenu;
 
     float f_MakeMoneyTimer = 0f;    // 한번 자원 제작하는데 남은 시간(Max = f_RefillMoneyInterval)
     float f_MakedMoney = 0f;    // 생산된 자원(획득 하기전 자원)
