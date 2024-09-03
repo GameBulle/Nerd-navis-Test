@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
-    [SerializeField] protected Image OutLine;
-    [SerializeField] protected Image ItemIcon;
-    [SerializeField] protected Image ItemLevelImage;
-    [SerializeField] protected TextMeshProUGUI ItemCountText;
+    [SerializeField] protected Image OutLine;   // 아이템의 테두리
+    [SerializeField] protected Image ItemIcon;  // 아이템의 이미지
+    [SerializeField] protected Image ItemLevelImage;    // 아이템의 레벨 이미지
+    [SerializeField] protected TextMeshProUGUI ItemCountText;   // 아이템의 현재 수량
 
     protected int n_ItemID;
 

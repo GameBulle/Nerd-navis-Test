@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class InventoryItemSlot : ItemSlot
 {
-    [SerializeField] Slider UpgradeSlider;
+    [SerializeField] Slider UpgradeSlider;  // ( 현재 수량 /  업그레이드 요구 수량) 표현할 슬라이더
     [SerializeField] TextMeshProUGUI ItemLevelText;
 
     public override void SetInventoryItemSlot(int ItemID)
@@ -39,7 +39,7 @@ public class InventoryItemSlot : ItemSlot
         return Sb.ToString();
     }
 
-    public void OnClickItemSlot()
+    public void OnClickItemSlot()   // ItemIcon을 클릭했을 때 아이템 정보 팝업창이 나오게 하는 함수
     {
         ItemInfoPopUp PopUp = FindObjectOfType<ItemInfoPopUp>();
         PopUp.SetItemInfoSlot(n_ItemID);
