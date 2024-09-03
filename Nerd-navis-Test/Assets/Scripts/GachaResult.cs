@@ -26,8 +26,8 @@ public class GachaResult : MonoBehaviour, IPointerClickHandler
         gameObject.SetActive(true);
         if (coroutine != null)
             coroutine = null;
-        //coroutine = StartCoroutine(OnGachaProduce(ItemsDic.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value)));
-        coroutine = StartCoroutine(OnGachaProduce(ItemsDic));
+        coroutine = StartCoroutine(OnGachaProduce(ItemsDic.OrderByDescending(x => x.Key).ToDictionary(x => x.Key, x => x.Value)));
+        //coroutine = StartCoroutine(OnGachaProduce(ItemsDic));
     }
 
     IEnumerator OnGachaProduce(Dictionary<int, int> ItemsDic)
@@ -41,6 +41,7 @@ public class GachaResult : MonoBehaviour, IPointerClickHandler
             Slot.OnDestroy += ReturnBackPool;
             Slot.SetGachaItemSlot(d.Key, d.Value);
             //Slot.transform.SetAsFirstSibling();
+            Slot.transform.SetAsLastSibling();
             Slot.gameObject.SetActive(true);
             yield return ReturnInstance;
         }
