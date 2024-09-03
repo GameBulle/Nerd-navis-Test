@@ -48,8 +48,8 @@ public class GameManager : MonoBehaviour
     { 
         get { return f_Hp; } 
         set 
-        { 
-            f_Defence = value;
+        {
+            f_Hp = value;
             InterfaceManager.Instance.UpdateStatus();
         } 
     }
