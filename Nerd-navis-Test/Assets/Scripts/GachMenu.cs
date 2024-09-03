@@ -17,7 +17,7 @@ public class GachMenu : MonoBehaviour
         n_GachaID = 10000;
         for (int i = 0; i < inventories.Length; i++)
         {
-            if (i == 0)     // 뽑기 메뉴 활성화 시, 무기 UI가 먼저 포커싱 되도록 함
+            if (i == 0)     // 뽑기 메뉴 활성화 시, 무기탭 UI가 먼저 포커싱 되도록 함
                 inventories[i].gameObject.SetActive(true);
             else
                 inventories[i].gameObject.SetActive(false);
