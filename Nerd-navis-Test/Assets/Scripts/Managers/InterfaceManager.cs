@@ -31,11 +31,11 @@ public class InterfaceManager : MonoBehaviour
     [SerializeField] ResourceMenu resourceMenu;
     [SerializeField] GachMenu gachaMenu;
 
-    float f_MakeMoneyTimer = 0f;
-    float f_MakedMoney = 0f;
+    float f_MakeMoneyTimer = 0f;    // 한번 자원 제작하는데 남은 시간(Max = f_RefillMoneyInterval)
+    float f_MakedMoney = 0f;    // 생산된 자원(획득 하기전 자원)
 
-    float f_RefillMoneyInterval = 0f;
-    float f_RefillMoneyCount = 0f;
+    float f_RefillMoneyInterval = 0f;   // 자원 제작 시간
+    float f_RefillMoneyCount = 0f;  // 한번의 자원 제작으로 얻는 자원의 양
 
     public float RefillMoneyInterval => f_RefillMoneyInterval;
     public float MakeMoneyTimer => f_MakeMoneyTimer;
@@ -45,7 +45,6 @@ public class InterfaceManager : MonoBehaviour
     {
         if (this != Instance)
             Destroy(gameObject);
-        //Initialize();
     }
     private void Update()
     {
@@ -109,7 +108,7 @@ public class InterfaceManager : MonoBehaviour
         gachaMenu.Initialize(f_RequireGachaPrice);
     }
 
-    public void UpdateStatus()
+    public void UpdateStatus()  // 모든 스테이터스(공격력, 방어력, 체력, 전투력)를 Update하는 함수
     {
         DamageText.text = GameManager.Instance.MakeValueUnit(GameManager.Instance.Damage);
         DefenceText.text = GameManager.Instance.MakeValueUnit(GameManager.Instance.Defence);
