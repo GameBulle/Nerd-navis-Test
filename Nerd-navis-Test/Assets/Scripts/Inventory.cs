@@ -5,12 +5,12 @@ using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] ItemManager.ItemOptionType ItemType;
-    [SerializeField] Transform SlotParentTransform;
+    [SerializeField] ItemManager.ItemOptionType ItemType;   // 장비탭의 타입(무기, 방어구, 방패)
+    [SerializeField] Transform SlotParentTransform; // Slot의 부모 Transform
 
     InventoryItemSlot InventorySlotPrefab;
     List<InventoryItemSlot> l_ItemSlotList;
-    SortedSet<int> h_ItemHashSet;
+    SortedSet<int> h_ItemHashSet;   // 중복을 허용하지 않고 소유한 ItemID를 오름차순으로 정렬
 
     public ItemManager.ItemOptionType Type => ItemType;
 
@@ -24,17 +24,18 @@ public class Inventory : MonoBehaviour
     public void SetItem(int ItemID) 
     {
         h_ItemHashSet.Add(ItemID); 
-        if(h_ItemHashSet.Count != l_ItemSlotList.Count)
+        if(h_ItemHashSet.Count != l_ItemSlotList.Count) // 소유한 아이템의 종류의 수 != 아이템 슬롯의 수
         {
             InventoryItemSlot Slot = Instantiate(InventorySlotPrefab, SlotParentTransform);
             l_ItemSlotList.Add(Slot);
         }
     }
 
+    // InventoryItemSlot 최신화
     public void UpdateInventoryUI()
     {
         int n_Index = -1;
-        float n_Value = 0f;
+        float n_Value = 0f; // 최신화된 소유한 아이템들의 능력치 합
         foreach(int ID in h_ItemHashSet)
         {
             n_Index++;
