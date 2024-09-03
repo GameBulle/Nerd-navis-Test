@@ -14,8 +14,11 @@ public class ItemSlot : MonoBehaviour
     [SerializeField] TextMeshProUGUI ItemCountText;
     [SerializeField] TextMeshProUGUI ItemLevelText;
 
+    int n_ItemID;
+
     public void SetItemSlot(int ItemID)
     {
+        n_ItemID = ItemID;
         Item item = ItemManager.Instance.GetItem(ItemID);
         if (item == null)
         {
@@ -63,5 +66,11 @@ public class ItemSlot : MonoBehaviour
         Sb.Append(" / ");
         Sb.Append(Require);
         return Sb.ToString();
+    }
+
+    public void OnClickItemSlot()
+    {
+        ItemInfoPopUp PopUp = FindObjectOfType<ItemInfoPopUp>();
+        PopUp.SetItemInfoSlot(n_ItemID);
     }
 }
