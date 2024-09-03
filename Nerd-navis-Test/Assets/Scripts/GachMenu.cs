@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GachMenu : MonoBehaviour
 {
+    [SerializeField] GachaResult GachaResult;
     [SerializeField] Inventory[] inventories;
 
     float f_RequireGachaPrice;
@@ -18,6 +19,7 @@ public class GachMenu : MonoBehaviour
         GachaID = 10000;
         for (int i = 0; i < inventories.Length; i++)
             inventories[i].Initialize();
+        GachaResult.Initialize();
     }
 
     public void OnClickGachaButton(int GachTime)
@@ -41,6 +43,8 @@ public class GachMenu : MonoBehaviour
                 }
             }
         }
+
+        GachaResult.GachaProduction(d_PickedItemDic);
 
         for (int i = 0; i < inventories.Length; i++)
             inventories[i].UpdateInventoryUI();

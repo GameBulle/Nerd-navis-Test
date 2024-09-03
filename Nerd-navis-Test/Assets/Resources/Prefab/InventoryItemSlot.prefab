@@ -1000,7 +1000,7 @@ GameObject:
   - component: {fileID: 9012849653570601341}
   - component: {fileID: 4915068030282903287}
   m_Layer: 0
-  m_Name: Slot
+  m_Name: InventoryItemSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1041,8 +1041,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OutLine: {fileID: 9012849651941929330}
-  ItemLevelImage: {fileID: 9012849651466266907}
   ItemIcon: {fileID: 9012849651686633284}
-  UpgradeSlider: {fileID: 9012849652675852733}
+  ItemLevelImage: {fileID: 9012849651466266907}
   ItemCountText: {fileID: 9012849652153189028}
+  UpgradeSlider: {fileID: 9012849652675852733}
   ItemLevelText: {fileID: 9012849651560410526}

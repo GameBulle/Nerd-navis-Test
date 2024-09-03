@@ -8,8 +8,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] ItemManager.ItemOptionType ItemType;
     [SerializeField] Transform SlotParentTransform;
 
-    ItemSlot ItemSlotPrefab;
-    List<ItemSlot> l_ItemSlotList;
+    InventoryItemSlot InventorySlotPrefab;
+    List<InventoryItemSlot> l_ItemSlotList;
     SortedSet<int> h_ItemHashSet;
 
     public ItemManager.ItemOptionType Type => ItemType;
@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour
     {
         h_ItemHashSet = new();
         l_ItemSlotList = new();
-        ItemSlotPrefab = Resources.Load<ItemSlot>("Prefab/Slot");
+        InventorySlotPrefab = Resources.Load<InventoryItemSlot>("Prefab/InventoryItemSlot");
     }
 
     public void SetItem(int ItemID) 
@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
         h_ItemHashSet.Add(ItemID); 
         if(h_ItemHashSet.Count != l_ItemSlotList.Count)
         {
-            ItemSlot Slot = Instantiate(ItemSlotPrefab, SlotParentTransform);
+            InventoryItemSlot Slot = Instantiate(InventorySlotPrefab, SlotParentTransform);
             l_ItemSlotList.Add(Slot);
         }
     }
@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
         foreach(int ID in h_ItemHashSet)
         {
             n_Index++;
-            l_ItemSlotList[n_Index].SetItemSlot(ID);
+            l_ItemSlotList[n_Index].SetInventoryItemSlot(ID);
             n_Value += ItemManager.Instance.GetItem(ID).Value;
         }
         

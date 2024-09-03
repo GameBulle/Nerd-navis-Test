@@ -11,17 +11,17 @@ public class ItemInfoPopUp : MonoBehaviour
     [SerializeField] Transform SlotTransform;
     [SerializeField] GameObject PopUpObject;
 
-    ItemSlot Slot;
+    InventoryItemSlot Slot;
 
     private void Awake()
     {
-        Slot = Instantiate(Resources.Load<ItemSlot>("Prefab/Slot"), SlotTransform);
+        Slot = Instantiate(Resources.Load<InventoryItemSlot>("Prefab/InventoryItemSlot"), SlotTransform);
     }
 
     public void SetItemInfoSlot(int ItemID)
     {
         PopUpObject.gameObject.SetActive(true);
-        Slot.SetItemSlot(ItemID);
+        Slot.SetInventoryItemSlot(ItemID);
         Item item = ItemManager.Instance.GetItem(ItemID);
         ValueText.text = GameManager.Instance.MakeValueUnit(item.Value);
 
